@@ -1,19 +1,33 @@
 import { FC } from 'react';
 import Todo from '../models/Todo';
+import { useSetAtom } from 'jotai';
+import { todosAtom } from '../state/ApplicationState';
 
 interface TodoComponentProps {
   todo: Todo;
+  handleDelete: (todo: Todo) => void;
 }
 
-const TodoComponent: FC<TodoComponentProps> = ({ todo }) => {
-  const { date, status, text } = todo;
+const TodoComponent: FC<TodoComponentProps> = ({ todo, handleDelete }) => {
+  const setTodos = useSetAtom(todosAtom);
+
+  const handleCompleted = (id: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => (todo.id === id ? { ...todo, status: !todo.status } : todo))
+    );
+  };
 
   return (
     <div className='flex flex-col bg-orange-50 p-4 my-3 rounded-2xl w-1/2'>
       <div className='my-3 flex items-center justify-between'>
-        <span className='text-xl'>{text}</span>
+        <span className={`text-xl ${todo.status ? 'line-through decoration-2' : ''}`}>
+          {todo.text}
+        </span>
         <div className='flex'>
-          <button className='p-3 bg-green-400 rounded-xl mx-2'>
+          <button
+            className='p-3 bg-green-400 rounded-xl mx-2'
+            onClick={() => handleCompleted(todo.id)}
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -25,7 +39,7 @@ const TodoComponent: FC<TodoComponentProps> = ({ todo }) => {
               <path strokeLinecap='round' strokeLinejoin='round' d='m4.5 12.75 6 6 9-13.5' />
             </svg>
           </button>
-          <button className='p-3 bg-red-500 rounded-xl mx-2'>
+          <button className='p-3 bg-red-500 rounded-xl mx-2' onClick={() => handleDelete(todo)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -43,7 +57,9 @@ const TodoComponent: FC<TodoComponentProps> = ({ todo }) => {
           </button>
         </div>
       </div>
-      <span className='text-sm text-gray-800'>{date.toLocaleString()}</span>
+      <span className={`text-sm text-gray-800 ${todo.status ? 'line-through decoration-2' : ''}`}>
+        {todo.date.toLocaleString()}
+      </span>
     </div>
   );
 };

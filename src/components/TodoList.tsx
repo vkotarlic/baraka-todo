@@ -1,13 +1,18 @@
+import { useAtom, useSetAtom } from 'jotai';
 import Todo from '../models/Todo';
 import TodoComponent from './Todo';
-
-const todos: Todo[] = [{ text: 'Test todo', date: new Date(), status: false }];
+import { filteredAtom, todosAtom } from '../state/ApplicationState';
 
 const TodoList = () => {
+  const [todos] = useAtom(filteredAtom);
+  const setTodos = useSetAtom(todosAtom);
+
+  const handleDelete = (todo: Todo) => setTodos((prev) => prev.filter((item) => item !== todo));
+
   return (
     <div className='flex flex-col items-center'>
       {todos.map((todo) => (
-        <TodoComponent todo={todo} />
+        <TodoComponent key={todo.id} todo={todo} handleDelete={handleDelete} />
       ))}
     </div>
   );

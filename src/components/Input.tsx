@@ -3,9 +3,10 @@ import { FC } from 'react';
 interface InputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onClick?: () => void;
+  value?: string;
 }
 
-const Input: FC<InputProps> = ({ onChange, onClick }) => {
+const Input: FC<InputProps> = ({ onChange, onClick, value }) => {
   return (
     <div className='flex items-center justify-center p-4'>
       <input
@@ -13,6 +14,7 @@ const Input: FC<InputProps> = ({ onChange, onClick }) => {
         type='text'
         placeholder='Go for groceries...'
         onChange={onChange}
+        value={value}
       />
       <button className='py-2 px-4 bg-orange-500 rounded-lg' onClick={onClick}>
         <svg
