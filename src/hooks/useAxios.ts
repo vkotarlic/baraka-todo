@@ -10,8 +10,8 @@ interface HookProps {
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
-const useAxios = ({ url, method, body, headers }: HookProps) => {
-  const [response, setResponse] = useState(null);
+const useAxios = <T>({ url, method, body, headers }: HookProps) => {
+  const [response, setResponse] = useState<T | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 

@@ -5,26 +5,27 @@ import { useSetAtom } from 'jotai';
 import { todosAtom } from '../state/ApplicationState';
 import useAxios from '../hooks/useAxios';
 import Spinner from './Spinner';
+import Quote from '../models/Quote';
 
 const Header = () => {
-  const [newTitle, setNewTitle] = useState('');
+  const [inputText, setInputText] = useState('');
   const setTodos = useSetAtom(todosAtom);
 
-  const { response, loading, error } = useAxios({
+  const { response, loading } = useAxios<Quote>({
     method: 'get',
     url: '/quotes/random'
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTitle(e.target.value);
+    setInputText(e.target.value);
   };
 
   const handleAddTodo = () => {
-    setNewTitle('');
-    if (newTitle)
+    setInputText('');
+    if (inputText)
       setTodos((prev) => [
         ...prev,
-        { id: crypto.randomUUID(), text: newTitle, status: false, date: new Date() }
+        { id: crypto.randomUUID(), text: inputText, status: false, date: new Date() }
       ]);
   };
 
@@ -39,7 +40,7 @@ const Header = () => {
           <p className='text-gray-600'>Author: {response.author}</p>
         </>
       )}
-      <Input onChange={handleChange} onClick={handleAddTodo} value={newTitle} />
+      <Input onChange={handleChange} onClick={handleAddTodo} value={inputText} />
       <Filters />
     </div>
   );

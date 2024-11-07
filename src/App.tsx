@@ -3,7 +3,7 @@ import TodoList from './components/TodoList';
 
 const App = () => {
   return (
-    <div className='p-10'>
+    <div className='px-10 py-6'>
       <Header />
       <TodoList />
     </div>
