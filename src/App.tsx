@@ -1,9 +1,13 @@
-function App() {
+import Header from './components/Header';
+import TodoList from './components/TodoList';
+
+const App = () => {
   return (
-    <div>
-      <h1 className='text-lg text-black'>Baraka todo</h1>
+    <div className='p-10'>
+      <Header />
+      <TodoList />
     </div>
   );
-}
+};
 
 export default App;
