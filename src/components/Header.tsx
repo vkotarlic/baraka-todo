@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Filters from './Filters';
+import Filters from './Filters/Filters';
 import Input from './Input';
 import { useSetAtom } from 'jotai';
 import { todosAtom } from '../state/ApplicationState';

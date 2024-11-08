@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { filtersAtom } from '../state/ApplicationState';
+import { filtersAtom } from '../../state/ApplicationState';
 import { Field, Radio, RadioGroup } from '@headlessui/react';
 
 const Filters = () => {
