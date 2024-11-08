@@ -1,7 +1,7 @@
 import { useAtom, useSetAtom } from 'jotai';
-import Todo from '../models/Todo';
-import TodoComponent from './Todo';
-import { filteredAtom, todosAtom } from '../state/ApplicationState';
+import Todo from '../../models/Todo';
+import { filteredAtom, todosAtom } from '../../state/ApplicationState';
+import TodoComponent from '../Todo';
 
 const TodoList = () => {
   const [todos] = useAtom(filteredAtom);

@@ -4,6 +4,8 @@
 
 This project is a To-Do List application built as part of the hiring process for the Senior React Frontend Engineer position at Baraka. The application demonstrates skills in React, state management, and clean, maintainable code.
 
+Application is deployed and can be checked [here](https://baraka-todo.vercel.app/)
+
 ## Features
 
 ### Functional Requirements
@@ -22,8 +24,9 @@ The project is organized as follows:
 src/
 ├── components/     # Reusable components
 ├── hooks/          # Custom hooks
-├── utils/          # Utility functions
-├── App.tsx          # Main application component
+├── state/          # Folder containing application state
+├── tests/          # Folder containing test setup
+├── App.tsx         # Main application component
 ├── main.tsx        # Entry point
 public/             # Static files (e.g., index.html)
 package.json        # Dependencies and scripts
